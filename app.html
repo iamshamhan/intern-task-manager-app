@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager | Dashboard</title>
+    <link rel="stylesheet" href="/src/styles/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>TaskManager</h1>
+      <div>
+        <span id="userName"></span>
+        <button id="darkModebtn">Dark Mode</button>
+        <button id="loginBnt">Logout</button>
+      </div>
+    </header>
+
+    <div>
+      <input type="search" id="searchInput" placeholder="Search tasks..." />
+      <button id="addTaskBtn">Add Task</button>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group"></div>
+      <span>Priority</span>
+
+      <button class="filterbtn" data-type="priority" data-value="all">
+        All
+      </button>
+      <button class="filterbtn" data-type="priority" data-value="low">
+        Low
+      </button>
+      <button class="filterbtn" data-type="priority" data-value="medium">
+        Medium
+      </button>
+      <button class="filterbtn" data-type="priority" data-value="high">
+        High
+      </button>
+    </div>
+
+    <div class="filter-group">
+      <span>Status</span>
+      <button class="filterbtn" data-type="status" data-value="all">All</button>
+      <button class="filterbtn" data-type="status" data-value="Todo">
+        Todo
+      </button>
+      <button class="filterbtn" data-type="status" data-value="In Progress">
+        In Progress
+      </button>
+      <button class="filterbtn" data-type="status" data-value="completed">
+        Completed
+      </button>
+    </div>
+
+    <div id="taskCount">0 tasks</div>
+
+    <div id="taskList"></div>
+
+    <div id="emptyState" class="hidden">
+      <p>No Tasks yet. Click "Add Task" to create one.</p>
+    </div>
+
+    <div id="taskModel" class="modal">
+      <div class="model-box">
+        <h2 id="taskMOdelTitle">Add Task</h2>
+
+        <form id="taskForm">
+          <label for="taskTitle">Title</label>
+          <input type="text" id="taskTitle" placeholder="task title" required />
+          <span id="taskTitleError" class="error"></span>
+
+          <label for="taskDescription">Description</label>
+          <textarea
+            id="taskDescription"
+            placeholder="task description"
+            required
+          ></textarea>
+
+          <label for="'taskCategory">Category</label>
+          <input
+            type="text"
+            id="taskCategory"
+            placeholder="e.g. Work, Personal"
+            required
+          />
+
+          <label for="taskTags">Tags</label>
+          <input
+            type="text"
+            id="taskTags"
+            placeholder="urgent, home"
+            required
+          />
+
+          <label for="taskPriority">Priority</label>
+          <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+
+          <label for="taskDueDate">Due Date</label>
+          <input type="date" id="taskDueDate" />
+
+          <label for="taskStatus">Status</label>
+          <select id="taskStatus">
+            <option value="todo">Todo</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+
+          <input type="hidden" id="taskId" value="" />
+
+          <button type="submit" id="taskSubmitBtn">Add Task</button>
+          <button type="button" id="taskCancelBtn">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="deleteModal" class="model hidden">
+      <div class="model-box">
+        <h2>Delete Task</h2>
+        <p>
+          Are you sure you want to delete this task?"<span
+            id="deleteTaskName"
+          ></span
+          >"?
+        </p>
+        <button id="deleteConfirmBtn">Delete</button>
+        <button id="deleteCancelBtn">Cancel</button>
+      </div>
+    </div>
+
+    <div class="data-buttons">
+      <button id="exportBtn">Export JSON</button>
+      <button id="importBtn">Import JSON</button>
+      <input type="file" id="importFile" accept=".json" hidden />
+    </div>
+
+    <div id="toastContainer"></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
