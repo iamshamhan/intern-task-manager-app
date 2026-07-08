@@ -10,9 +10,10 @@
     <header>
       <h1>TaskManager</h1>
       <div>
-        <span id="userName"></span>
-        <button id="darkModebtn">Dark Mode</button>
-        <button id="loginBnt">Logout</button>
+        <span id="userName">User</span>
+        <button id="statsBtn">📊 Stats</button>
+        <button id="darkModeBtn">Dark Mode</button>
+        <button id="logoutBtn">Logout</button>
       </div>
     </header>
 
@@ -22,6 +23,14 @@
     </div>
 
     <div class="filters">
+      <div class="filter-group">
+        <span>Category:</span>
+        <div id="categoryList">
+          <!-- categories added by JS -->
+        </div>
+        <button id="addCategoryBtn">+ Add Category</button>
+      </div>
+
       <div class="filter-group"></div>
       <span>Priority</span>
 
@@ -61,7 +70,7 @@
       <p>No Tasks yet. Click "Add Task" to create one.</p>
     </div>
 
-    <div id="taskModel" class="modal">
+    <div id="taskModel" class="modal hidden">
       <div class="model-box">
         <h2 id="taskMOdelTitle">Add Task</h2>
 
@@ -132,6 +141,28 @@
       </div>
     </div>
 
+    <div id="categoryModal" class="modal hidden">
+      <div class="modal-box">
+        <h2>Add Category</h2>
+
+        <form id="categoryForm">
+          <label for="categoryName">Name</label>
+          <input
+            type="text"
+            id="categoryName"
+            placeholder="e.g. Work, Personal"
+          />
+          <span id="categoryNameError" class="error"></span>
+
+          <label for="categoryColor">Color</label>
+          <input type="color" id="categoryColor" value="#6366f1" />
+
+          <button type="submit">Add Category</button>
+          <button type="button" id="categoryCancelBtn">Cancel</button>
+        </form>
+      </div>
+    </div>
+
     <div class="data-buttons">
       <button id="exportBtn">Export JSON</button>
       <button id="importBtn">Import JSON</button>
@@ -139,6 +170,35 @@
     </div>
 
     <div id="toastContainer"></div>
+
+    <div id="statsModal" class="modal hidden">
+      <div class="modal-box">
+        <h2>Statistics</h2>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div id="statTotal">0</div>
+            <p>Total Tasks</p>
+          </div>
+          <div class="stat-box">
+            <div id="statCompleted">0</div>
+            <p>Completed</p>
+          </div>
+          <div class="stat-box">
+            <div id="statOverdue">0</div>
+            <p>Overdue</p>
+          </div>
+        </div>
+
+        <h3>Tasks by Priority</h3>
+        <div id="priorityChart"></div>
+
+        <h3>Tasks by Status</h3>
+        <div id="statusChart"></div>
+
+        <button type="button" id="statsCloseBtn">Close</button>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
